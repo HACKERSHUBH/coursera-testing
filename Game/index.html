@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<body onload="do_game()">
+    <script type="text/javascript" charset="utf-8">
+        var colors = ["azure", "black", "blue", "brown", "cyan", "gold",
+            "green", "gray", "magenta", "navy", "orange", "pink", "red",
+            "silver", "violet"];
+        var target;
+        var count = 0;
+        var guess_input;
+        function do_game() {
+            colors.sort();
+            target = Math.floor(Math.random() * colors.length);
+            do {
+                guess_input = prompt(
+                    "Shubham Sharma is thinking of one of these colors\n\n" + colors +
+                    "\n\nWhat color is he thinking of? You have only 5 chances otherwise you will tracked by him."
+                )
+                count ++;
+            } while (check_guess());
+        }
+        function check_guess() {
+            var idx = colors.indexOf(guess_input);
+            if (idx < 0)
+            {
+                alert(" Sorry,I don’t recognize that color!");
+                return true;             
+             }
+             if (idx > target)
+             {
+                alert("Your guess is alphabetically higher than mine! take it seriously,otherwise you will be hacked!!!");
+                return true;
+             }
+             if (idx < target)
+             {
+                alert("Your input is alphabetically lower than mine! get the right thing asap");
+                 return true; 
+             }
+            else {
+                elem_body = document.getElementsByTagName("body")[0];
+                elem_body.style.background = colors[target];
+                alert("You are right! Your guess is matched with me. You took " + count + " guesses!");
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
